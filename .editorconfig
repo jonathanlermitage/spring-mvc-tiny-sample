@@ -1,0 +1,20 @@
+# Ce fichier permet à votre IDE de s'auto-configurer via quelques règles de formatage.
+# Voir le site "editorconfig.org", des plugins existent pour la plupart des IDE, même VSCode.
+# IntelliJ intègre le support EditorConfig en natif, donc y'a rien à faire.
+
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false # on a parfois besoin de laisser des espaces en fin de ligne sur du Markdown.
+
+[*.{yml, yaml, json}]
+indent_size = 2

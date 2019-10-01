@@ -1,0 +1,11 @@
+
+${AnsiColor.MAGENTA} $$$$$$\   $$$$$$\  $$\   $$\  $$$$$$\  $$$$$$$\  $$$$$$$\
+${AnsiColor.BRIGHT_BLUE}$$  __$$\ $$  __$$\ $$$\  $$ |$$  __$$\ $$  __$$\ $$  __$$\
+${AnsiColor.CYAN}$$ /  \__|$$ /  $$ |$$$$\ $$ |$$ /  $$ |$$ |  $$ |$$ |  $$ |
+${AnsiColor.BRIGHT_BLUE}$$ |      $$$$$$$$ |$$ $$\$$ |$$$$$$$$ |$$$$$$$  |$$ |  $$ |
+${AnsiColor.BRIGHT_RED}$$ |      $$  __$$ |$$ \$$$$ |$$  __$$ |$$  __$$< $$ |  $$ |
+${AnsiColor.BRIGHT_YELLOW}$$ |  $$\ $$ |  $$ |$$ |\$$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |
+${AnsiColor.GREEN}\$$$$$$  |$$ |  $$ |$$ | \$$ |$$ |  $$ |$$ |  $$ |$$$$$$$  |
+${AnsiColor.BRIGHT_MAGENTA} \______/ \__|  \__|\__|  \__|\__|  \__|\__|  \__|\_______/${Ansi.DEFAULT}
+
+${AnsiColor.MAGENTA} Running App ${AnsiStyle.BOLD}${version}${AnsiStyle.NORMAL}${AnsiColor.MAGENTA} with Spring Boot ${AnsiStyle.BOLD}${spring-boot.version}${Ansi.DEFAULT}
