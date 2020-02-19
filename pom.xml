@@ -1,49 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-    <!-- On utilise le pom "parent" Sring Boot pour bénéficier des quelques trucs qu'il contient, comme
-     de la configuration de plugins Maven, ainsi qu'une grand liste de versions de librairies : ça
-     évite d'avoir à spécifier le "<version>" de la plupart des libs, et on s'assure d'utiliser les
-     versions testées par les développeurs de Spring (C'est bien beau de forcer la dernière version
-     mais si ça plante vous aurez l'air chouette, surtout si ça bug en prod). -->
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.8.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+    <groupId>coin.coin</groupId>
+    <artifactId>spring-mvc-tiny-sample</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-mvc-tiny-sample</name>
+    <description>Projet de démo d'une API tout simple, et de tests d'intégration tout aussi simples</description>
 
-	<groupId>coin.coin</groupId>
-	<artifactId>spring-mvc-tiny-sample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-mvc-tiny-sample</name>
-	<description>Projet de démo d'une API tout simple, et de tests d'intégration tout aussi simples</description>
-
-	<properties>
-		<java.version>1.8</java.version>
+    <properties>
+        <java.version>1.8</java.version>
 
         <rest-assured.version>4.1.1</rest-assured.version>
         <guava.version>28.1-jre</guava.version>
     </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-            <!-- Optional car cette lib n'est pas utile au runtime (quand l'application est lancée). On ne
-             s'en sert ici que durant la compilation, donc on l'exclue du fichier JAR/WAT généré. Ce n'est pas
-             grave si on la met quand même dans le JAR/WAR : c'est juste qu'elle va l'alourdir inutilement. -->
-			<optional>true</optional>
-		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
 
-        <!-- juste une lib utilitaire -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -55,63 +49,51 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <exclusions>
-                <!-- on exclue JUnit (v4) car on va déclarer et utiliser JUnit 5, le bloc juste en dessous -->
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
-        <!-- JUnit 5 ! Alias JUnit Macron, heuuu JUnit Jupiter ! -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- cette lib permet de faire facilement des appels HTTP et des assertions dessus. On
-         s'en servira pour nos tests d'intégration de notre API -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <!-- je spécifie la version car le parent SpringBoot n'est pas toujours à jour sur cette lib, et ça
-             reste du test -->
             <version>${rest-assured.version}</version>
             <scope>test</scope>
         </dependency>
 
     </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-                <!-- ce plugin va permettre de packager l'appli comme il faut, à la sauce Spring -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+
+            </plugin>
 
             <plugin>
-                <!-- exécute les tests unitaires (*Test.java) -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
             <plugin>
-                <!-- exécute les tests d'intégration (*IT.java) -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 
 </project>

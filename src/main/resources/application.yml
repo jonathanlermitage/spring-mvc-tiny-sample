@@ -1,12 +1,5 @@
-# Doc du application.properties/.yaml : https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
-# Ce fichier pourrait être traduit en properties, Spring gérant les deux, mais je trouve le YAML plus sympa.
-
 spring:
-  # on affiche la bannière uniquement dans la console, pas dans les logs fichier. Les logs c'est sérieux.
   main.banner-mode: console
-  # force l'utiliation de couleurs dans les logs (console), c'est tellement swag :-)
   output.ansi.enabled: always
 
-# astuce : on récupère la version du projet à partir du pom.xml (car il est "filtré" par Maven, étant
-# dans le dossier resources) et on la stocke ici pour la réutiliser dans la bannière avec "${version}".
-version: @project.version@
+app.version: @project.version@
