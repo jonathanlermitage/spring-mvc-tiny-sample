@@ -13,7 +13,7 @@
     <artifactId>spring-mvc-tiny-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-mvc-tiny-sample</name>
-    <description>Projet de démo d'une API tout simple, et de tests d'intégration tout aussi simples</description>
+    <description>Projet de démo d'une API tout simple</description>
 
     <properties>
         <java.version>1.8</java.version>

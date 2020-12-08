@@ -23,7 +23,7 @@ public class CustomFilterConfig {
 
     @Bean
     @Primary
-    public FilterRegistrationBean getFilterRegistrationBean() {
+    public FilterRegistrationBean<LoggingFilter> getFilterRegistrationBean() {
         FilterRegistrationBean<LoggingFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new LoggingFilter());
         registration.addUrlPatterns("/*");
@@ -36,7 +36,7 @@ public class CustomFilterConfig {
         @Override
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-            if (request instanceof HttpServletRequest) { // on ne s'intéresse qu'aux requêtes HTTP(S)
+            if (request instanceof HttpServletRequest) {
                 HttpServletRequest req = ((HttpServletRequest) request);
                 ArrayList<String> headers = Collections.list(req.getHeaderNames());
                 for (String header : headers) {

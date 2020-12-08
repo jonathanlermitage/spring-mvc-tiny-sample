@@ -15,10 +15,10 @@ import java.util.Optional;
 public class PersonServiceImpl implements PersonService {
 
     /**
-     * Une liste en dur de personnes. Idéalement on aurait une base de données avec plein d'individus', mais
-     * là on la code en dur pour garder un projet simpliste.
+     * Une liste en dur de personnes. Idéalement on aurait une base de données avec plein d'individus, mais
+     * là on la code en dur pour faire simple.
      */
-    private static final Map<String, Person> allTheCoincoins = ImmutableMap.of(
+    private static final Map<String, Person> peopleDatabase = ImmutableMap.of(
         "Sariyah", new Person("Sariyah", 123),
         "Bryan", new Person("Bryan", -2),
         "Dexter", new Person("Dexter", 1_000_000)
@@ -26,14 +26,14 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<Person> findByName(String name) {
-        if (allTheCoincoins.containsKey(name)) {
-            return Optional.of(allTheCoincoins.get(name));
+        if (peopleDatabase.containsKey(name)) {
+            return Optional.of(peopleDatabase.get(name));
         }
         return Optional.empty();
     }
 
     @Override
     public Collection<Person> findAll() {
-        return allTheCoincoins.values();
+        return peopleDatabase.values();
     }
 }
